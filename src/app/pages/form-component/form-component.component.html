@@ -1,0 +1,36 @@
+<div class="container-fluid">
+  <div class="card">
+    <div class="card-header text-center bg-warning">Products List</div>
+    <div class="row">
+        <div class="col-10">
+            <i class="fa fa-search pull-right mt-2" (click)="onSearch(searchedText)"></i>
+        </div>
+        <div class="col-2">
+            <input type="text" [(ngModel)]="searchedText" placeholder="Search Title/Description" class="form-control" >
+        </div>
+    </div>
+    <div class="card-body" >
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col" class="text-center">Title</th>
+                <th scope="col" class="text-center">Description</th>
+                <th scope="col" class="text-center">Price</th>
+            </tr>
+        </thead>
+        <ng-container *ngIf="products && products.length > 0;else noData">
+            <tbody *ngFor="let product of products">
+            <tr>
+                <td>{{ product.title }}</td>
+                <td>{{ product.description }}</td>
+                <td>{{ product.price }}</td>
+            </tr>
+        </tbody>
+        </ng-container>
+        <ng-template #noData>
+            <p class="text-center">No Data, Try searching exact Title or Description</p>
+        </ng-template>
+    </table>
+    </div>
+  </div>
+</div>
